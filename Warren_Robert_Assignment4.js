@@ -12,12 +12,20 @@
 var myString = "602-688-1290"
 var end = myString.indexOf("-"),
 	start = myString.indexOf("-");
-myString.substring(0,end)
-myString.substring(start,end)
+myString.substring(0,end);
+myString.substring(start,end);
 var end = myString.length;
-myString.substring(start,end)
+myString.substring(start,end);
 
-console.log(myString.substring(602-688-1290))
+//2.
+var end = myString.indexOf("@");
+myString.substring(0,end);
+var	start = myString.indexOf("@"),
+	end = myString.indexOf(".");
+myString.substring(0,end);
+var	start = myString.indexOf("@"),
+	end = myString.length;
+myString.substring(0,end);
 
 
 /*Number
