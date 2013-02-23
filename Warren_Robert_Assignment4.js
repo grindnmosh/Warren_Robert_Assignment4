@@ -9,23 +9,33 @@
 	return a string with the first separator changed to the second: "a,b,c" + "," + "/" → "a/b/c".*/
 
 // 1.
-var myString = "602-688-1290"
-var end = myString.indexOf("-"),
-	start = myString.indexOf("-");
-myString.substring(0,end);
-myString.substring(start,end);
-var end = myString.length;
-myString.substring(start,end);
+var phoneNumber = function (myString) {
+	var	end = myString.indexOf("-"),
+		start = myString.indexOf("-");
+	myString.substring(0,end);
+	myString.substring(start,end);
+	var end = myString.length; //watch videos again I believe math will help
+	myString.substring(start,end);
+	if (myString.length === "012", "345", "6789") 
+	{
+			console.log(true);
+	} else if (myString.length !== "012", "345", "6789") {
+			console.log(false)
+	}
+};
+phoneNumber("602-688-1290")
+
+phoneNumber("505-55 -190 ")
 
 //2.
-var end = myString.indexOf("@");
+/*var end = myString.indexOf("@");
 myString.substring(0,end);
 var	start = myString.indexOf("@"),
 	end = myString.indexOf(".");
 myString.substring(0,end);
 var	start = myString.indexOf("@"),
 	end = myString.length;
-myString.substring(0,end);
+myString.substring(0,end);*/
 
 
 /*Number
