@@ -9,33 +9,66 @@
 	return a string with the first separator changed to the second: "a,b,c" + "," + "/" → "a/b/c".*/
 
 // 1.
-var phoneNumber = function (myString) {
-	var	end = myString.indexOf("-"),
-		start = myString.indexOf("-");
-	myString.substring(0,end);
-	myString.substring(start,end);
-	var end = myString.length; //watch videos again I believe math will help
-	myString.substring(start,end);
-	if (myString.length === "012", "345", "6789") 
-	{
-			console.log(true);
-	} else if (myString.length !== "012", "345", "6789") {
+var phoneNumber = function (trueNumber) 
+{
+	var	end = trueNumber.indexOf("-"),
+	start = trueNumber.lastIndexOf("-");
+	last = trueNumber.length; 
+	trueNumber.substring(0,end);
+	trueNumber.substring(start,end);
+	trueNumber.substring(start,last);
+	if (trueNumber.length === 12) {
+			console.log(true)
+	} else if (trueNumber.length <= 11) {
 			console.log(false)
 	}
 };
-phoneNumber("602-688-1290")
 
-phoneNumber("505-55 -190 ")
+phoneNumber("602-688-1290") //true
+
+phoneNumber("505-55-190") //false
 
 //2.
-/*var end = myString.indexOf("@");
-myString.substring(0,end);
-var	start = myString.indexOf("@"),
-	end = myString.indexOf(".");
-myString.substring(0,end);
-var	start = myString.indexOf("@"),
-	end = myString.length;
-myString.substring(0,end);*/
+var email = function (trueEmail) {
+	var user = trueEmail.indexOf("@");
+	trueEmail.substring(0,user);
+	var	d = trueEmail.indexOf("@"),
+		end = trueEmail.indexOf(".");
+	trueEmail.substring(d,end);
+	var	g = trueEmail.indexOf("."),
+		last = trueEmail.length;
+	trueEmail.substring(g,last);
+	if (trueEmail.indexOf("@") >= 4 & trueEmail.lastIndexOf(".") >= 7) {
+			console.log(true)
+	} else {
+			console.log(false)
+	}
+}
+
+email("grindnmosh@fullsail.com")
+
+email("grindnmosh.fullsail.com")
+
+
+//3.
+var testUrl = function (url) {
+	if (url.indexOf("http") >= 0) {
+		console.log(true);
+			if (url.indexOf("https") >= 0) {
+				console.log(true);
+			}
+	} else {
+		console.log(false);
+	}
+}
+
+
+
+testUrl("http://fullsail.edu")
+
+testUrl("https://fullsail.edu")
+
+testUrl("Fullsail Rules")
 
 
 /*Number
