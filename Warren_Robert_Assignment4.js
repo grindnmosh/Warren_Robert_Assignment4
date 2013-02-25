@@ -1,5 +1,14 @@
 //alert("JavaScript works!");
 
+/*
+Robert Warren
+02/06/2013
+Project 4
+Libraries
+github: https://github.com/grindnmosh/Warren_Robert_Assignment2
+*/
+
+
 /*String
 1. Does a string follow a 123-456-7890 pattern like a phone number?
 2. Does a string follow an aaa@bbb.ccc pattern like an email address?
@@ -58,8 +67,6 @@ email("I love Breaking Bad.com")
 
 //3.
 var testUrl = function (url) {
-	var end = url.indexOf("://"),
-		prefix = url.substring(0, end)
 	if (url.startsWith("http://") || url.startsWith("https://")) {
 		console.log(true);	
 	} else {
@@ -144,3 +151,56 @@ console.log(parseInt("56"));
 11. Find the total value of just the numbers in an array, even if some of the items are not numbers.
 12. Given an array of objects and the name of a key, return the array sorted by the value of that key in each 
 	of the objects: "a" + [{a:2},{a:3},{a:1}] → [{a:1},{a:2},{a:3}].*/
+	
+//10.
+
+
+Array.prototype.minGreaterThan=function(a){var t=this,r=Number.POSITIVE_INFINITY,i;
+	for (i=0;i<t.length;i++) if (a<t[i] && t[i]<r) r=t[i];
+	return r;
+}
+
+numberJumble = [10, 15, 23, 13, 18, 7, 27, 25],n=11;
+console.log(numberJumble.minGreaterThan(n));
+
+//11.
+var mixedUp = [10, "house", "23", "heart", 18, "love", 27, "marriage"];
+var sum = 0;
+for (var i = 0; i < mixedUp.length; i++) {
+	if (parseInt(mixedUp[i])) { 
+		sum += mixedUp[i];
+	}
+}
+console.log(sum);//is running numbers together not adding
+
+
+//12.
+var wifeAndKids = {
+	"family": 
+	[
+		{
+			"relationship": "wife",
+			"name":         "Cynthia",
+			"age":           33
+		},
+		{
+			"relationship": "oldestStepson",
+			"name":         "Michael",
+			"age":          14
+		},
+		{
+			"relationship": "youngestStepson", 
+			"name":         "Johnny",
+			"age":          11
+		},
+		{
+			"relationship": "stepdaughter",
+			"name":         "Alexis",
+			"age":           12
+		}
+	]
+};
+console.log(wifeAndKids.family.sort(function(a, b) { return a.age > b.age}));
+console.log(wifeAndKids.family.sort(function(a, b) { return a.age < b.age}));
+
+
