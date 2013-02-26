@@ -61,14 +61,6 @@ function stringLibrary () {
 	};
 
 //4.
-/*var splitStrUpper = function (str) {
-		var split = str.split(" ");
-		var result = "";
-		for (var i = 0, j = split.length; i < j; i++) {
-			var spNew = split[i].replace(split[i].charAt(0),(split[i].charAt(0)).toUpperCase());
-			result = result.concat(spNew + " ");
-		};
-		return result; */
 	function splitString(stringToSplit, separator) {
 		var arrayOfStrings = stringToSplit.split(separator);
 		var result = "";
