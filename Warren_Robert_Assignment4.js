@@ -27,9 +27,9 @@ function stringLibrary () {
 		prefix = trueNumber.substring(4,middle),
 		suffix = trueNumber.substring(8,last);
 		if (areaCode.length === 3 && prefix.length === 3 && suffix.length === 4) {
-			console.log("This string is a phone number.");
+			return true;
 		} else {
-			console.log("Please re-enter the phone number in this format '123-456-7890'")
+			return false;
 		}
 	}	
 
@@ -41,9 +41,9 @@ function stringLibrary () {
 		var emailAddress = emailCheck
 		var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/
 		if (emailPattern.test(emailAddress)) {
-			console.log("This email follows the aaa@bbb.ccc pattern.");
+			return true;
 		} else {
-			console.log("This email does not follow the aaa@bbb.ccc pattern.");
+			return false;
 		}
 
 	};
@@ -53,25 +53,37 @@ function stringLibrary () {
 		var url = testUrl
 		var testCheck = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
 		var isUrl = testCheck.test(url);
-		console.log("This string is a " + isUrl + " URL.");
+		if (isUrl =true) {
+			return true
+		} else if (isUrl = false) {
+			return false
+		}
 	};
 
 //4.
+/*var splitStrUpper = function (str) {
+		var split = str.split(" ");
+		var result = "";
+		for (var i = 0, j = split.length; i < j; i++) {
+			var spNew = split[i].replace(split[i].charAt(0),(split[i].charAt(0)).toUpperCase());
+			result = result.concat(spNew + " ");
+		};
+		return result; */
 	function splitString(stringToSplit, separator) {
 		var arrayOfStrings = stringToSplit.split(separator);
-  		console.log('The original string is: "' + stringToSplit + '"')
-		console.log('The separator is: "' + separator + '"')
-		console.log("The array has " + arrayOfStrings.length + " elements: ")
-
-		for (var i=0; i < arrayOfStrings.length; i++)
-		console.log(arrayOfStrings[i].charAt(0).toUpperCase() + arrayOfStrings[i].substr(1).toLowerCase());
+		var result = "";
+		for (var i=0; i < arrayOfStrings.length; i++) {
+			var newString = arrayOfStrings[i].charAt(0).toUpperCase() + arrayOfStrings[i].substr(1).toLowerCase();
+			string = result.concat(newString + separator);
+		}
+		return string	
 	};
 
 //5.
 	function changeSeparator (oldString) {
 		var newString = oldString.replace(/,/gi, "/");
 		if (oldString) {
-		console.log(newString);
+		return newString;
 		}
 	};
 
@@ -92,36 +104,44 @@ function stringLibrary () {
 
 function numberLibrary () {
 //6.
-	function fixMoney(moneyToFix) {
-		var money = moneyToFix
-		money.toFixed(2)
-		return console.log(money.toFixed(2));
-};
+	//6.
+	function fixMoney(money,dec) {
+		return Number(money.toFixed(dec));
+	};
 
 //7.
 	function fuzzyNum (num, compareNum, percent) {
 		var percentage = (num/compareNum) * 100;
 		if ((num >= compareNum && percentage >= percent) || (num < compareNum && percentage < percent)) {
-			console.log(false);
+			return false;
 		} else {
-			console.log(true);
+			return true;
 		};	
 	};
 
 //8.
-	function timeDate (current, wedAnn) {
+	//8.
+	function timeDate (current, wedAnn, timeInput) {
+		var time = timeInput
 		var anniversary = wedAnn
 		var today = current
 		var Ms = (wedAnn - today); 
- 	var days = Math.round(Ms / 86400000); 
-	 var hours = Math.round((Ms % 86400000) / 3600000);
-	 var minutes = Math.round(((Ms % 86400000) % 3600000) / 60000); 
-	console.log(days + " days, " + hours + " hours, " + minutes + " minutes until my next wedding anniversary");
-	};
+ 	var numDays = Math.round(Ms / (1000*60*60*24)); 
+	var numHours = Math.round(Ms / (1000*60*60));
+	var numMinutes = Math.round(Ms / (1000*60)); 
+		 if(time === "days") {
+		 	return numDays + " days"
+		 } else if (timeInput === "hours") {
+		 	return numHours + " hours"
+		} else if (time === "minutes") {
+	 		return numMinutes + " minutes"
+		}
+			
+	}
 
 //9.
 	function strNum (num) {
-		console.log(parseInt(num));
+		return parseInt(num);
 	}
 
 
@@ -142,7 +162,17 @@ function numberLibrary () {
 	
 function arrayLibrary () {
 //10.
-///
+	var greaterThan = function (array,num) {
+		array.sort(function(a,b){return a-b;});
+		if (num >= array[0] && num < array[array.length-1]) {
+			array.push(num);
+			array.sort(function(a,b){return a-b;});
+			var result = array[array.lastIndexOf(num) + 1];
+			return result;
+		} else {
+			return null;
+		};
+	};
 
 
 //11.
@@ -153,17 +183,21 @@ function arrayLibrary () {
 				total += array[i];
 			};
 		};
-		console.log(total);
+		return total;
 	};
 
 //12.
-	function family (array) {
-		console.log(wifeAndKids.family.sort(function(a, b) { return a.age > b.age}));
-		console.log(wifeAndKids.family.sort(function(a, b) { return a.age < b.age}));
+	function family (array,order) {
+		if (order = "gt") {
+			return wifeAndKids.family.sort(function(a, b) { return a.age > b.age})
+		} else if (order = "lt") {
+			return wifeAndKids.family.sort(function(a, b) { return a.age < b.age})
+		}
+			
 	};
 	
 return {
-		//"greaterThan" : greaterThan,
+		"greaterThan" : greaterThan,
 		"findAdd" : findAdd,
 		"family" : family,
 	};
@@ -172,43 +206,46 @@ return {
 
 console.log("String Tests");
 var stringLib = stringLibrary();
-stringLib.phoneNumber("602-688-1290");
-stringLib.phoneNumber("50-55-190");
-stringLib.checkUrl("http://www.fullsail.edu");
-stringLib.checkUrl("https://www.fullsail.edu");
-stringLib.checkUrl("Fullsail Rules");
-stringLib.checkUrl("http:/ww.fullsail.edu");
-stringLib.checkUrl("httpt://www.fullsail.edu");
-stringLib.emailPattern("grindnmosh@fullsail.edu");
-stringLib.emailPattern("grindnmosh@gmail.com");
-stringLib.emailPattern("I love Breaking Bad.com");
-stringLib.splitString("learning to code is fun", " ");
-stringLib.changeSeparator("apples,oranges,bananas");
+console.log(stringLib.phoneNumber("602-688-1290"));
+console.log(stringLib.phoneNumber("50-55-190"));
+console.log(stringLib.checkUrl("http://www.fullsail.edu"));
+console.log(stringLib.checkUrl("https://www.fullsail.edu"));
+console.log(stringLib.checkUrl("Fullsail Rules"));
+console.log(stringLib.checkUrl("http:/ww.fullsail.edu"));
+console.log(stringLib.checkUrl("httpt://www.fullsail.edu"));
+console.log(stringLib.emailPattern("grindnmosh@fullsail.edu"));
+console.log(stringLib.emailPattern("grindnmosh@gmail.com"));
+console.log(stringLib.emailPattern("I love Breaking Bad.com"));
+console.log(stringLib.splitString("learning to code is fun", " "));
+console.log(stringLib.changeSeparator("apples,oranges,bananas"));
 console.log(" ");
 
 console.log("Number Tests");
 var numLib = numberLibrary();
-numLib.fixMoney(100.91565);
-numLib.fixMoney(10);
-numLib.fixMoney(10.5);
-numLib.fixMoney(1569.91565);
-numLib.fuzzyNum(60, 103, 40)
-numLib.fuzzyNum(20, 150, 15)
+console.log(numLib.fixMoney(100.91565,2));
+console.log(numLib.fixMoney(10,2));
+console.log(numLib.fixMoney(10.5,6));
+console.log(numLib.fixMoney(1569.91565,3));
+console.log(numLib.fuzzyNum(60, 103, 40));
+console.log(numLib.fuzzyNum(20, 150, 15));
 var anniversary = new Date("January 13, 2014 23:13:13");
 var today = new Date();
-numLib.timeDate(today, anniversary);
+console.log((numLib.timeDate(today, anniversary,"days")) + " till my next wedding anniversary");
+console.log((numLib.timeDate(today, anniversary,"hours")) + " till my next wedding anniversary")
+console.log((numLib.timeDate(today, anniversary,"minutes")) + " till my next wedding anniversary")
 console.log(today);
 console.log(anniversary);
-numLib.strNum("10");
-numLib.strNum("42");
-numLib.strNum("56");
+console.log(numLib.strNum("10"));
+console.log(numLib.strNum("42"));
+console.log(numLib.strNum("56"));
+console.log(" ")
 
 console.log("Array Tests");
-var arrayLib = arrayLibrary();
-//var numberJumble = [10, 15, 23, 13, 18, 7, 27, 25],n=11;
-//arrayLib.greaterThan(numberJumble);
+var arrayLib = arrayLibrary();	
+var numberJumble = [10, 15, 23, 13, 18, 7, 27, 25];
+console.log(arrayLib.greaterThan(numberJumble,11));
 var mixedUp = [10, "house", "heart", 18, "love", 27, "marriage"];
-arrayLib.findAdd(mixedUp);//is running numbers together not adding
+console.log(arrayLib.findAdd(mixedUp));
 var wifeAndKids = {
 	"family": 
 	[
@@ -234,4 +271,5 @@ var wifeAndKids = {
 		}
 	]
 }
-arrayLib.family(wifeAndKids.family)
+console.log(arrayLib.family(wifeAndKids.family,"gt"));
+console.log(arrayLib.family(wifeAndKids.family,"lt"));
