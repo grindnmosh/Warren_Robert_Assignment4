@@ -17,90 +17,72 @@ github: https://github.com/grindnmosh/Warren_Robert_Assignment2
 5. Given a string that is a list of things separated by a given string, as well as another string separator, 
 	return a string with the first separator changed to the second: "a,b,c" + "," + "/" → "a/b/c".*/
 
-
-
+function stringLibrary () {
 //1.
-var phoneNumber = function (trueNumber) {
+	function phoneNumber (trueNumber) {
 	var	start = trueNumber.indexOf("-"),
 		middle = trueNumber.lastIndexOf("-");
 		last = trueNumber.length,
 		areaCode = trueNumber.substring(0,start),
 		prefix = trueNumber.substring(4,middle),
 		suffix = trueNumber.substring(8,last);
-		//begin = function (areaCode) {
 		if (areaCode.length === 3 && prefix.length === 3 && suffix.length === 4) {
-			console.log(true)	
+			console.log("This string is a phone number.");
 		} else {
-			console.log(false)
+			console.log("Please re-enter the phone number in this format '123-456-7890'")
 		}
 	}	
 
 
-phoneNumber("602-688-1290") //true
-
-phoneNumber("50-55-190") //false
 
 
 //2.
-var email = function (trueEmail) {
-	var user = trueEmail.indexOf("@");
-	trueEmail.substring(0, user);
-	var	d = trueEmail.indexOf("@"),
-		end = trueEmail.indexOf(".");
-	trueEmail.substring(d, end);
-	var	g = trueEmail.indexOf("."),
-		last = trueEmail.length;
-	trueEmail.substring(g,last);
-	if (trueEmail.contains("@") && trueEmail.endsWith(".com") || trueEmail.contains("@") && trueEmail.endsWith(".edu") ) {
-			console.log(true)
-	} else {
-			console.log(false)
-	}
-}
+	function emailPattern (emailCheck) {
+		var emailAddress = emailCheck
+		var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/
+		if (emailPattern.test(emailAddress)) {
+			console.log("This email follows the aaa@bbb.ccc pattern.");
+		} else {
+			console.log("This email does not follow the aaa@bbb.ccc pattern.");
+		}
 
-email("grindnmosh@fullsail.edu")
-
-email("grindnmosh@gmail.com")
-
-email("I love Breaking Bad.com")
-
+	};
 
 //3.
-var testUrl = function (url) {
-	if (url.startsWith("http://") || url.startsWith("https://")) {
-		console.log(true);	
-	} else {
-		console.log(false);
-	}
-}
-
-testUrl("http://fullsail.edu")
-testUrl("https://fullsail.edu")
-testUrl("Fullsail Rules")
-testUrl("http:/fullsail.edu")
-testUrl("httpt://fullsail.edu")
-
+	function checkUrl (testUrl) {
+		var url = testUrl
+		var testCheck = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
+		var isUrl = testCheck.test(url);
+		console.log("This string is a " + isUrl + " URL.");
+	};
 
 //4.
-function splitString(stringToSplit, separator) {
-	var arrayOfStrings = stringToSplit.split(separator);
-  	console.log('The original string is: "' + stringToSplit + '"')
-	console.log('The separator is: "' + separator + '"')
-	console.log("The array has " + arrayOfStrings.length + " elements: ")
+	function splitString(stringToSplit, separator) {
+		var arrayOfStrings = stringToSplit.split(separator);
+  		console.log('The original string is: "' + stringToSplit + '"')
+		console.log('The separator is: "' + separator + '"')
+		console.log("The array has " + arrayOfStrings.length + " elements: ")
 
-	for (var i=0; i < arrayOfStrings.length; i++)
-    console.log(arrayOfStrings[i].charAt(0).toUpperCase() + arrayOfStrings[i].substr(1).toLowerCase());
-};
-
-var str = "learning to code is fun"
-var space = " ";
-splitString(str, space);	
+		for (var i=0; i < arrayOfStrings.length; i++)
+		console.log(arrayOfStrings[i].charAt(0).toUpperCase() + arrayOfStrings[i].substr(1).toLowerCase());
+	};
 
 //5.
-var fruit = "apples,oranges,bananas";
-var newFruit = fruit.replace(/,/gi, "/");
-console.log(newFruit); 
+	function changeSeparator (oldString) {
+		var newString = oldString.replace(/,/gi, "/");
+		if (oldString) {
+		console.log(newString);
+		}
+	};
 
+	return {
+		"phoneNumber" : phoneNumber,
+		"emailPattern" : emailPattern,
+		"checkUrl" : checkUrl,
+		"splitString" : splitString,
+		"changeSeparator" : changeSeparator
+	}
+};
 
 /*Number
 6. Format a number to use a specific number of decimal places, as for money: 2.1 → 2.10
@@ -108,17 +90,16 @@ console.log(newFruit);
 8. Find the number of hours or days difference between two dates.
 9. Given a string version of a number such as "42", return the value as an actual Number, such as 42.*/
 
+function numberLibrary () {
 //6.
-//n.toFixed() 
-2.1.toFixed(2)
-console.log(2.1.toFixed(2));
-2.1.toFixed(6)
-console.log(2.1.toFixed(6));
-2.1.toFixed(0)
-console.log(2.1.toFixed(0));
+	function fixMoney(moneyToFix) {
+		var money = moneyToFix
+		money.toFixed(2)
+		return console.log(money.toFixed(2));
+};
 
 //7.
-var fuzzyNum = function (num, compareNum, percent) {
+	function fuzzyNum (num, compareNum, percent) {
 		var percentage = (num/compareNum) * 100;
 		if ((num >= compareNum && percentage >= percent) || (num < compareNum && percentage < percent)) {
 			console.log(false);
@@ -127,24 +108,31 @@ var fuzzyNum = function (num, compareNum, percent) {
 		};	
 	};
 
-fuzzyNum(60, 103, 40)
-
 //8.
-
-	var wedAnn = new Date("January 13, 2013 23:13:13");
-    var today = new Date();
-    var one_day = 1000 * 60 * 60 * 24;
-    console.log(Math.ceil((today.getTime()) - (wedAnn.getTime()) / one_day) + " hours since " + wedAnn);
-    console.log(wedAnn)
-    console.log(today)
-
-// producing inaccurate hours. trying to find bug.
+	function timeDate (current, wedAnn) {
+		var anniversary = wedAnn
+		var today = current
+		var Ms = (wedAnn - today); 
+ 	var days = Math.round(Ms / 86400000); 
+	 var hours = Math.round((Ms % 86400000) / 3600000);
+	 var minutes = Math.round(((Ms % 86400000) % 3600000) / 60000); 
+	console.log(days + " days, " + hours + " hours, " + minutes + " minutes until my next wedding anniversary");
+	};
 
 //9.
-console.log(parseInt("10"));
-console.log(parseInt("42"));
-console.log(parseInt("56"));
+	function strNum (num) {
+		console.log(parseInt(num));
+	}
 
+
+	return {
+		"fixMoney" : fixMoney,
+		"fuzzyNum" : fuzzyNum,
+		"timeDate" : timeDate,
+		"strNum" : strNum
+
+	};
+};
 
 /*Array
 10. Find the smallest value in an array that is greater than a given number
@@ -152,29 +140,75 @@ console.log(parseInt("56"));
 12. Given an array of objects and the name of a key, return the array sorted by the value of that key in each 
 	of the objects: "a" + [{a:2},{a:3},{a:1}] → [{a:1},{a:2},{a:3}].*/
 	
+function arrayLibrary () {
 //10.
+///
 
-
-Array.prototype.minGreaterThan=function(a){var t=this,r=Number.POSITIVE_INFINITY,i;
-	for (i=0;i<t.length;i++) if (a<t[i] && t[i]<r) r=t[i];
-	return r;
-}
-
-numberJumble = [10, 15, 23, 13, 18, 7, 27, 25],n=11;
-console.log(numberJumble.minGreaterThan(n));
 
 //11.
-var mixedUp = [10, "house", "23", "heart", 18, "love", 27, "marriage"];
-var sum = 0;
-for (var i = 0; i < mixedUp.length; i++) {
-	if (parseInt(mixedUp[i])) { 
-		sum += mixedUp[i];
-	}
-}
-console.log(sum);//is running numbers together not adding
-
+	function findAdd (array) {
+		var total = 0;
+		for (var i = 0, j = array.length; i < j; i++) {
+			if (array[i]/1 === array[i]) {
+				total += array[i];
+			};
+		};
+		console.log(total);
+	};
 
 //12.
+	function family (array) {
+		console.log(wifeAndKids.family.sort(function(a, b) { return a.age > b.age}));
+		console.log(wifeAndKids.family.sort(function(a, b) { return a.age < b.age}));
+	};
+	
+return {
+		//"greaterThan" : greaterThan,
+		"findAdd" : findAdd,
+		"family" : family,
+	};
+
+};
+
+console.log("String Tests");
+var stringLib = stringLibrary();
+stringLib.phoneNumber("602-688-1290");
+stringLib.phoneNumber("50-55-190");
+stringLib.checkUrl("http://www.fullsail.edu");
+stringLib.checkUrl("https://www.fullsail.edu");
+stringLib.checkUrl("Fullsail Rules");
+stringLib.checkUrl("http:/ww.fullsail.edu");
+stringLib.checkUrl("httpt://www.fullsail.edu");
+stringLib.emailPattern("grindnmosh@fullsail.edu");
+stringLib.emailPattern("grindnmosh@gmail.com");
+stringLib.emailPattern("I love Breaking Bad.com");
+stringLib.splitString("learning to code is fun", " ");
+stringLib.changeSeparator("apples,oranges,bananas");
+console.log(" ");
+
+console.log("Number Tests");
+var numLib = numberLibrary();
+numLib.fixMoney(100.91565);
+numLib.fixMoney(10);
+numLib.fixMoney(10.5);
+numLib.fixMoney(1569.91565);
+numLib.fuzzyNum(60, 103, 40)
+numLib.fuzzyNum(20, 150, 15)
+var anniversary = new Date("January 13, 2014 23:13:13");
+var today = new Date();
+numLib.timeDate(today, anniversary);
+console.log(today);
+console.log(anniversary);
+numLib.strNum("10");
+numLib.strNum("42");
+numLib.strNum("56");
+
+console.log("Array Tests");
+var arrayLib = arrayLibrary();
+//var numberJumble = [10, 15, 23, 13, 18, 7, 27, 25],n=11;
+//arrayLib.greaterThan(numberJumble);
+var mixedUp = [10, "house", "heart", 18, "love", 27, "marriage"];
+arrayLib.findAdd(mixedUp);//is running numbers together not adding
 var wifeAndKids = {
 	"family": 
 	[
@@ -199,8 +233,5 @@ var wifeAndKids = {
 			"age":           12
 		}
 	]
-};
-console.log(wifeAndKids.family.sort(function(a, b) { return a.age > b.age}));
-console.log(wifeAndKids.family.sort(function(a, b) { return a.age < b.age}));
-
-
+}
+arrayLib.family(wifeAndKids.family)
