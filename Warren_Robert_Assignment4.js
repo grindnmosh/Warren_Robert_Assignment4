@@ -33,29 +33,21 @@ function stringLibrary () {
 		}
 	}	
 
-
-
-
 //2.
 	function emailPattern (emailCheck) {
-		var emailAddress = emailCheck
-		var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/
-		if (emailPattern.test(emailAddress)) {
-			return true;
+		if (emailCheck.indexOf("@") >= 4 & emailCheck.lastIndexOf(".") >= 7) {
+			return true
 		} else {
-			return false;
+			return false
 		}
 
 	};
 
 //3.
-	function checkUrl (testUrl) {
-		var url = testUrl
-		var testCheck = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
-		var isUrl = testCheck.test(url);
-		if (isUrl =true) {
-			return true
-		} else if (isUrl = false) {
+	function checkUrl (url) {
+		if (url.startsWith("http://") || url.startsWith("https://")) {
+			return true;  
+		} else {
 			return false
 		}
 	};
@@ -63,20 +55,19 @@ function stringLibrary () {
 //4.
 	function splitString(stringToSplit, separator) {
 		var arrayOfStrings = stringToSplit.split(separator);
-		var result = "";
+		var string = "";
 		for (var i=0; i < arrayOfStrings.length; i++) {
 			var newString = arrayOfStrings[i].charAt(0).toUpperCase() + arrayOfStrings[i].substr(1).toLowerCase();
-			string = result.concat(newString + separator);
+			string = string.concat(newString + separator);
 		}
 		return string	
 	};
 
 //5.
 	function changeSeparator (oldString) {
-		var newString = oldString.replace(/,/gi, "/");
-		if (oldString) {
+		var newString = oldString.replace(/,/g, "/") 
+		// https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String provided in the strings lesson.
 		return newString;
-		}
 	};
 
 	return {
@@ -179,13 +170,9 @@ function arrayLibrary () {
 	};
 
 //12.
-	function family (array,order) {
-		if (order = "gt") {
-			return wifeAndKids.family.sort(function(a, b) { return a.age > b.age})
-		} else if (order = "lt") {
-			return wifeAndKids.family.sort(function(a, b) { return a.age < b.age})
-		}
-			
+	function family (array,key) {
+		return (array.sort(function(a, b) { return a[key] > b[key]}));
+		
 	};
 	
 return {
@@ -203,7 +190,7 @@ console.log(stringLib.phoneNumber("50-55-190"));
 console.log(stringLib.checkUrl("http://www.fullsail.edu"));
 console.log(stringLib.checkUrl("https://www.fullsail.edu"));
 console.log(stringLib.checkUrl("Fullsail Rules"));
-console.log(stringLib.checkUrl("http:/ww.fullsail.edu"));
+console.log(stringLib.checkUrl("http:/www.fullsail.edu"));
 console.log(stringLib.checkUrl("httpt://www.fullsail.edu"));
 console.log(stringLib.emailPattern("grindnmosh@fullsail.edu"));
 console.log(stringLib.emailPattern("grindnmosh@gmail.com"));
@@ -263,5 +250,4 @@ var wifeAndKids = {
 		}
 	]
 }
-console.log(arrayLib.family(wifeAndKids.family,"gt"));
-console.log(arrayLib.family(wifeAndKids.family,"lt"));
+console.log(arrayLib.family(wifeAndKids.family,"age"));
