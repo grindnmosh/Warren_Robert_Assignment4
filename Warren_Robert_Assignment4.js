@@ -8,6 +8,38 @@ Libraries
 github: https://github.com/grindnmosh
 */
 
+var anniversary = new Date("January 13, 2014 23:13:13");
+var today = new Date();
+var numberJumble = [10, 15, 23, 13, 18, 7, 27, 25];
+var mixedUp = [10, "house", "heart", 18, "love", 27, "marriage"];
+var wifeAndKids = {
+	"family": 
+	[
+		{
+			"relationship": "wife",
+			"name":         "Cynthia",
+			"age":           33
+		},
+		{
+			"relationship": "oldestStepson",
+			"name":         "Michael",
+			"age":          14
+		},
+		{
+			"relationship": "youngestStepson", 
+			"name":         "Johnny",
+			"age":          11
+		},
+		{
+			"relationship": "stepdaughter",
+			"name":         "Alexis",
+			"age":           12
+		}
+	]
+}
+var stringLib = stringLibrary();
+var numLib = numberLibrary();
+var arrayLib = arrayLibrary();	
 
 /*String
 1. Does a string follow a 123-456-7890 pattern like a phone number?
@@ -146,7 +178,7 @@ function numberLibrary () {
 function arrayLibrary () {
 //10.
 	var greaterThan = function (array,num) {
-		array.sort(function(a,b){return a-b;});
+		//array.sort(function(a,b){return a-b;});
 		if (num >= array[0] && num < array[array.length-1]) {
 			array.push(num);
 			array.sort(function(a,b){return a-b;});
@@ -184,7 +216,6 @@ return {
 };
 
 console.log("String Tests");
-var stringLib = stringLibrary();
 console.log(stringLib.phoneNumber("602-688-1290"));
 console.log(stringLib.phoneNumber("50-55-190"));
 console.log(stringLib.checkUrl("http://www.fullsail.edu"));
@@ -200,15 +231,12 @@ console.log(stringLib.changeSeparator("apples,oranges,bananas"));
 console.log(" ");
 
 console.log("Number Tests");
-var numLib = numberLibrary();
 console.log(numLib.fixMoney(100.91565,2));
 console.log(numLib.fixMoney(10,2));
 console.log(numLib.fixMoney(10.5,6));
 console.log(numLib.fixMoney(1569.91565,3));
 console.log(numLib.fuzzyNum(60, 103, 40));
 console.log(numLib.fuzzyNum(20, 150, 15));
-var anniversary = new Date("January 13, 2014 23:13:13");
-var today = new Date();
 console.log((numLib.timeDate(today, anniversary,"days")) + " till my next wedding anniversary");
 console.log((numLib.timeDate(today, anniversary,"hours")) + " till my next wedding anniversary")
 console.log((numLib.timeDate(today, anniversary,"minutes")) + " till my next wedding anniversary")
@@ -220,34 +248,7 @@ console.log(numLib.strNum("56"));
 console.log(" ")
 
 console.log("Array Tests");
-var arrayLib = arrayLibrary();	
-var numberJumble = [10, 15, 23, 13, 18, 7, 27, 25];
 console.log(arrayLib.greaterThan(numberJumble,11));
-var mixedUp = [10, "house", "heart", 18, "love", 27, "marriage"];
 console.log(arrayLib.findAdd(mixedUp));
-var wifeAndKids = {
-	"family": 
-	[
-		{
-			"relationship": "wife",
-			"name":         "Cynthia",
-			"age":           33
-		},
-		{
-			"relationship": "oldestStepson",
-			"name":         "Michael",
-			"age":          14
-		},
-		{
-			"relationship": "youngestStepson", 
-			"name":         "Johnny",
-			"age":          11
-		},
-		{
-			"relationship": "stepdaughter",
-			"name":         "Alexis",
-			"age":           12
-		}
-	]
-}
 console.log(arrayLib.family(wifeAndKids.family,"age"));
+console.log(" ");
