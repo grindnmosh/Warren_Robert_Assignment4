@@ -58,7 +58,13 @@ function stringLibrary () {
 		areaCode = trueNumber.substring(0,start),
 		prefix = trueNumber.substring(4,middle),
 		suffix = trueNumber.substring(8,last);
-		if (areaCode.length === 3 && prefix.length === 3 && suffix.length === 4) {
+		phone = trueNumber.substring(0,last);
+		if ((isNaN(areaCode)) === false 
+			&& (isNaN(prefix)) === false 
+			&& (isNaN(suffix)) === false 
+			&& areaCode.length === 3 
+			&& prefix.length === 3 
+			&& suffix.length === 4) {
 			return true;
 		} else {
 			return false;
@@ -67,7 +73,7 @@ function stringLibrary () {
 
 //2.
 	function emailPattern (emailCheck) {
-		if (emailCheck.indexOf("@") >= 4 & emailCheck.lastIndexOf(".") >= 7) {
+		if (emailCheck.indexOf("@") >= 4 && emailCheck.lastIndexOf(".") >= 7 && emailCheck.indexOf(" ") === -1) {
 			return true
 		} else {
 			return false
@@ -85,7 +91,7 @@ function stringLibrary () {
 	};
 
 //4.
-	function splitString(stringToSplit, separator) {
+	function splitString (stringToSplit, separator) {
 		var arrayOfStrings = stringToSplit.split(separator);
 		var string = "";
 		for (var i=0; i < arrayOfStrings.length; i++) {
@@ -141,9 +147,9 @@ function numberLibrary () {
 		var anniversary = wedAnn
 		var today = current
 		var Ms = (wedAnn - today); 
- 	var numDays = Math.round(Ms / (1000*60*60*24)); 
-	var numHours = Math.round(Ms / (1000*60*60));
-	var numMinutes = Math.round(Ms / (1000*60)); 
+ 		var numDays = Math.round(Ms / (1000*60*60*24)); 
+		var numHours = Math.round(Ms / (1000*60*60));
+		var numMinutes = Math.round(Ms / (1000*60)); 
 		 if(time === "days") {
 		 	return numDays + " days"
 		 } else if (timeInput === "hours") {
@@ -177,18 +183,16 @@ function numberLibrary () {
 	
 function arrayLibrary () {
 //10.
-	var greaterThan = function (array,num) {
-		//array.sort(function(a,b){return a-b;});
+	function greaterThan (array,num) {
 		if (num >= array[0] && num < array[array.length-1]) {
 			array.push(num);
 			array.sort(function(a,b){return a-b;});
-			var result = array[array.lastIndexOf(num) + 1];
+			result = array[array.lastIndexOf(num) + 1];
 			return result;
 		} else {
 			return null;
 		};
 	};
-
 
 //11.
 	function findAdd (array) {
@@ -217,15 +221,16 @@ return {
 
 console.log("String Tests");
 console.log(stringLib.phoneNumber("602-688-1290"));
+console.log(stringLib.phoneNumber("602-6p8-1290"));
 console.log(stringLib.phoneNumber("50-55-190"));
+console.log(stringLib.emailPattern("grindnmosh@fullsail.edu"));
+console.log(stringLib.emailPattern("grindn mosh@gmail.com"));
+console.log(stringLib.emailPattern("I love Breaking Bad.com"));
 console.log(stringLib.checkUrl("http://www.fullsail.edu"));
 console.log(stringLib.checkUrl("https://www.fullsail.edu"));
 console.log(stringLib.checkUrl("Fullsail Rules"));
 console.log(stringLib.checkUrl("http:/www.fullsail.edu"));
 console.log(stringLib.checkUrl("httpt://www.fullsail.edu"));
-console.log(stringLib.emailPattern("grindnmosh@fullsail.edu"));
-console.log(stringLib.emailPattern("grindnmosh@gmail.com"));
-console.log(stringLib.emailPattern("I love Breaking Bad.com"));
 console.log(stringLib.splitString("learning to code is fun", " "));
 console.log(stringLib.changeSeparator("apples,oranges,bananas"));
 console.log(" ");
