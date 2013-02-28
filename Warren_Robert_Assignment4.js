@@ -36,7 +36,7 @@ var wifeAndKids = {
 			"age":           12
 		}
 	]
-}
+};
 var stringLib = stringLibrary();
 var numLib = numberLibrary();
 var arrayLib = arrayLibrary();	
@@ -58,7 +58,6 @@ function stringLibrary () {
 		areaCode = trueNumber.substring(0,start),
 		prefix = trueNumber.substring(4,middle),
 		suffix = trueNumber.substring(8,last);
-		phone = trueNumber.substring(0,last);
 		if ((isNaN(areaCode)) === false 
 			&& (isNaN(prefix)) === false 
 			&& (isNaN(suffix)) === false 
@@ -68,17 +67,16 @@ function stringLibrary () {
 			return true;
 		} else {
 			return false;
-		}
-	}	
+		};
+	};
 
 //2.
 	function emailPattern (emailCheck) {
 		if (emailCheck.indexOf("@") >= 4 && emailCheck.lastIndexOf(".") >= 7 && emailCheck.indexOf(" ") === -1) {
-			return true
+			return true;
 		} else {
-			return false
-		}
-
+			return false;
+		};
 	};
 
 //3.
@@ -86,24 +84,24 @@ function stringLibrary () {
 		if (url.startsWith("http://") || url.startsWith("https://")) {
 			return true;  
 		} else {
-			return false
-		}
+			return false;
+		};
 	};
 
 //4.
 	function splitString (stringToSplit, separator) {
-		var arrayOfStrings = stringToSplit.split(separator);
-		var string = "";
+		var arrayOfStrings = stringToSplit.split(separator),
+			string = "";
 		for (var i=0; i < arrayOfStrings.length; i++) {
 			var newString = arrayOfStrings[i].charAt(0).toUpperCase() + arrayOfStrings[i].substr(1).toLowerCase();
 			string = string.concat(newString + separator);
-		}
-		return string	
+		};
+		return string;	
 	};
 
 //5.
 	function changeSeparator (oldString) {
-		var newString = oldString.replace(/,/g, "/") 
+		var newString = oldString.replace(/,/g, "/");
 		// https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String provided in the strings lesson.
 		return newString;
 	};
@@ -114,7 +112,7 @@ function stringLibrary () {
 		"checkUrl" : checkUrl,
 		"splitString" : splitString,
 		"changeSeparator" : changeSeparator
-	}
+	};
 };
 
 /*Number
@@ -143,27 +141,23 @@ function numberLibrary () {
 //8.
 	//8.
 	function timeDate (current, wedAnn, timeInput) {
-		var time = timeInput
-		var anniversary = wedAnn
-		var today = current
-		var Ms = (wedAnn - today); 
+		var Ms = (wedAnn - current); 
  		var numDays = Math.round(Ms / (1000*60*60*24)); 
 		var numHours = Math.round(Ms / (1000*60*60));
 		var numMinutes = Math.round(Ms / (1000*60)); 
-		 if(time === "days") {
-		 	return numDays + " days"
+		 if(timeInput === "days") {
+		 	return numDays + " days";
 		 } else if (timeInput === "hours") {
-		 	return numHours + " hours"
-		} else if (time === "minutes") {
-	 		return numMinutes + " minutes"
-		}
-			
-	}
+		 	return numHours + " hours";
+		} else if (timeInput === "minutes") {
+	 		return numMinutes + " minutes";
+		};	
+	};
 
 //9.
 	function strNum (num) {
 		return parseInt(num);
-	}
+	};
 
 
 	return {
@@ -214,7 +208,7 @@ function arrayLibrary () {
 return {
 		"greaterThan" : greaterThan,
 		"findAdd" : findAdd,
-		"family" : family,
+		"family" : family
 	};
 
 };
@@ -243,14 +237,14 @@ console.log(numLib.fixMoney(1569.91565,3));
 console.log(numLib.fuzzyNum(60, 103, 40));
 console.log(numLib.fuzzyNum(20, 150, 15));
 console.log((numLib.timeDate(today, anniversary,"days")) + " till my next wedding anniversary");
-console.log((numLib.timeDate(today, anniversary,"hours")) + " till my next wedding anniversary")
-console.log((numLib.timeDate(today, anniversary,"minutes")) + " till my next wedding anniversary")
+console.log((numLib.timeDate(today, anniversary,"hours")) + " till my next wedding anniversary");
+console.log((numLib.timeDate(today, anniversary,"minutes")) + " till my next wedding anniversary");
 console.log(today);
 console.log(anniversary);
 console.log(numLib.strNum("10"));
 console.log(numLib.strNum("42"));
 console.log(numLib.strNum("56"));
-console.log(" ")
+console.log(" ");
 
 console.log("Array Tests");
 console.log(arrayLib.greaterThan(numberJumble,11));
